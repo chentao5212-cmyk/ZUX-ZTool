@@ -25,7 +25,8 @@ class MagicWindowSearchRepository(
         } catch (_: Exception) {
             try {
                 embeddingConfig = JSONObject(requireNotNull(loadJsonFromAsset(ASSET_CONFIG_PATH)))
-                MagicWindowConfigLoadResult.Loaded(context.getString(R.string.official_config_tips))
+                val count = embeddingConfig?.getJSONArray("packages")?.length() ?: 0
+                MagicWindowConfigLoadResult.Loaded(context.getString(R.string.official_config_tips, count))
             } catch (_: Exception) {
                 embeddingConfig = null
                 MagicWindowConfigLoadResult.Missing(context.getString(R.string.config_not_exists_tips))
