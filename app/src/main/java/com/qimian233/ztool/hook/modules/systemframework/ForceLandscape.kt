@@ -75,23 +75,13 @@ class ForceLandscape : SystemHookModule() {
             if (!forcedToLandscape) {
                 chain.proceed()  // 横屏 / 跟随系统 / 用户旋转：让原方法处理
             } else {
-                // 跟随用户当前握姿选 landscape 或 seascape：
-                //   - 电源键在上的默认握姿 (mUserRotation=0 或 90) -> mLandscapeRotation
-                //   - 电源键在下的倒握 (mUserRotation=180 或 270) -> mSeascapeRotation
-                // 这样不论用户怎么握平板、是否手动 180° 旋转，画面始终是正的。
+                // 锁竖屏的 App 走横屏方向，但必须跟随用户当前握姿，避免画面颠倒。
+                // 0/90/180/270 与 mLandscapeRotation/mUpsideDownRotation/mSeascapeRotation/
+                // mPortraitRotation 是一一对应的，直接返回 mUserRotation 都是正确方向。
                 val self = chain.thisObject
-                val userRot = self.javaClass.getDeclaredField("mUserRotation").apply {
+                self.javaClass.getDeclaredField("mUserRotation").apply {
                     isAccessible = true
                 }.getInt(self)
-                val fieldName = if (userRot == 180 || userRot == 270) {
-                    "mSeascapeRotation"
-                } else {
-                    "mLandscapeRotation"
-                }
-                val field = self.javaClass.getDeclaredField(fieldName).apply {
-                    isAccessible = true
-                }
-                field.getInt(self)
             }
         }
     }
