@@ -27,6 +27,7 @@ class FrameworkSettingsRepository(
             allowRelativeAppLaunch = prefsUtils.loadBooleanSetting(ALLOW_RELATIVE_APP_LAUNCH, false),
             forceRelativeAppFreeform = prefsUtils.loadBooleanSetting(FORCE_RELATIVE_APP_FREEFORM, false),
             disableHbmThermalLimit = prefsUtils.loadBooleanSetting(KEY_DISABLE_HBM_THERMAL_LIMIT, false),
+            forceLandscape = prefsUtils.loadBooleanSetting(KEY_FORCE_LANDSCAPE, false),
             aiInputSigns = aiInputSigns,
             aiInputSignsError = validateAiInputSigns(aiInputSigns),
         )
@@ -83,6 +84,10 @@ class FrameworkSettingsRepository(
         prefsUtils.saveBooleanSetting(KEY_DISABLE_HBM_THERMAL_LIMIT, enabled)
     }
 
+    fun saveForceLandscape(enabled: Boolean) {
+        prefsUtils.saveBooleanSetting(KEY_FORCE_LANDSCAPE, enabled)
+    }
+
     fun normalizeScreenOnOffAnimationDuration(value: Int): Int {
         val clampedValue = value.coerceIn(
             SCREEN_ON_OFF_ANIMATION_MIN_MS,
@@ -128,6 +133,7 @@ class FrameworkSettingsRepository(
         private val ALLOW_RELATIVE_APP_LAUNCH = PreferenceKeys.ALLOW_RELATIVE_APP_LAUNCH.name
         private val FORCE_RELATIVE_APP_FREEFORM = PreferenceKeys.FORCE_RELATIVE_APP_FREEFORM.name
         private val KEY_DISABLE_HBM_THERMAL_LIMIT = PreferenceKeys.DISABLE_HBM_THERMAL_LIMIT.name
+        private val KEY_FORCE_LANDSCAPE = PreferenceKeys.FORCE_LANDSCAPE.name
     }
 }
 

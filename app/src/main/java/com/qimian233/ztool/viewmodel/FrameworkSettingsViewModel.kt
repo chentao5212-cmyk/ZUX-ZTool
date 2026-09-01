@@ -102,6 +102,11 @@ class FrameworkSettingsViewModel(
         repository.saveDisableHbmThermalLimit(enabled)
     }
 
+    fun setForceLandscape(enabled: Boolean) {
+        _uiState.value = _uiState.value.copy(forceLandscape = enabled)
+        repository.saveForceLandscape(enabled)
+    }
+
     fun showAiInputInfoDialog() {
         _uiState.value = _uiState.value.copy(showAiInputInfoDialog = true)
     }
@@ -151,4 +156,5 @@ data class FrameworkSettingsUiState(
     val allowRelativeAppLaunch: Boolean = false,
     val forceRelativeAppFreeform: Boolean = false,
     val disableHbmThermalLimit: Boolean = false,
+    val forceLandscape: Boolean = false,
 )

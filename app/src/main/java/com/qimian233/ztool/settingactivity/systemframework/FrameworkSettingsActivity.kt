@@ -96,7 +96,8 @@ fun FrameworkSettingsRoute(
         onAllowUntrustedTouch = viewModel::setAllowUntrustedTouch,
         onAllowRelativeAppLaunchChanged = viewModel::setAllowRelativeAppLaunch,
         onForceRelativeAppFreeformChanged = viewModel::setForceRelativeAppFreeform,
-        onDisableHbmThermalLimitChanged = viewModel::setDisableHbmThermalLimit
+        onDisableHbmThermalLimitChanged = viewModel::setDisableHbmThermalLimit,
+        onForceLandscapeChanged = viewModel::setForceLandscape
     )
 
     if (uiState.showAiInputInfoDialog) {
@@ -203,6 +204,7 @@ private fun FrameworkSettingsScreen(
                         onAllowRelativeAppLaunchChanged = onAllowRelativeAppLaunchChanged,
                         onForceRelativeAppFreeformChanged = onForceRelativeAppFreeformChanged,
                         onDisableHbmThermalLimitChanged = onDisableHbmThermalLimitChanged,
+                        onForceLandscapeChanged = onForceLandscapeChanged,
                     ),
                     bottomPadding = 96.dp
                 )
@@ -225,6 +227,7 @@ private fun frameworkSettingsSections(
     onAllowRelativeAppLaunchChanged: (Boolean) -> Unit,
     onForceRelativeAppFreeformChanged: (Boolean) -> Unit,
     onDisableHbmThermalLimitChanged: (Boolean) -> Unit,
+    onForceLandscapeChanged: (Boolean) -> Unit,
     onAiInputSignsChanged: (String) -> Unit,
     onShowAiInputInfo: () -> Unit
 ): List<SettingSection> {
@@ -237,6 +240,12 @@ private fun frameworkSettingsSections(
                     summary = stringResource(R.string.keep_rotation_enable_summary),
                     checked = state.keepRotation,
                     onCheckedChange = onKeepRotationChanged
+                ),
+                SettingItem.Switch(
+                    title = stringResource(R.string.force_landscape_title),
+                    summary = stringResource(R.string.force_landscape_summary),
+                    checked = state.forceLandscape,
+                    onCheckedChange = onForceLandscapeChanged
                 ),
                 SettingItem.Switch(
                     title = stringResource(R.string.disable_hbm_thermal_limit_title),

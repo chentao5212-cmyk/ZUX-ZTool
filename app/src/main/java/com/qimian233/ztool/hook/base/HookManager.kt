@@ -49,6 +49,7 @@ import com.qimian233.ztool.hook.modules.systemframework.AllowUntrustedTouch
 import com.qimian233.ztool.hook.modules.systemframework.DisableFlagSecure
 import com.qimian233.ztool.hook.modules.systemframework.DisableGameAudio
 import com.qimian233.ztool.hook.modules.systemframework.DisableHbmThermalLimit
+import com.qimian233.ztool.hook.modules.systemframework.ForceLandscape
 import com.qimian233.ztool.hook.modules.systemframework.ForceRelativeAppFreeform
 import com.qimian233.ztool.hook.modules.systemframework.ForceScreenOnOffAnimation
 import com.qimian233.ztool.hook.modules.systemframework.KeepRotation
@@ -127,6 +128,7 @@ object HookManager {
         registerHookModule(AllowRelativeAppLaunch())
         registerHookModule(ForceRelativeAppFreeform())
         registerHookModule(DisableHbmThermalLimit())
+        registerHookModule(ForceLandscape())
         registerHookModule(SystemSplitScreenMandatory()) // 看看 setting 包的注册模块你就知道这一行为什么要这么写了
 
         // ── SystemUI (target: com.android.systemui) ──
