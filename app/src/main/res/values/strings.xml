@@ -800,6 +800,8 @@
     <string name="keep_rotation_enable_summary">将默认屏幕方向由横屏改为竖屏</string>
     <string name="force_landscape_title">强制全局横屏</string>
     <string name="force_landscape_summary">强制让锁竖屏的应用走横屏，手动 180° 旋转与转屏图标仍可正常使用</string>
+    <string name="force_landscape_tile_on">已强制</string>
+    <string name="force_landscape_tile_off">未启用</string>
     <string name="disable_zui_applist_title">安全相关</string>
     <string name="disable_flag_secure_title">强制允许截屏</string>
     <string name="disable_flag_secure_summary">移除安全窗口标志，解决安全窗口截屏为全黑问题</string>

@@ -699,6 +699,8 @@
     <string name="keep_rotation_enable_summary">Change the default screen orientation from landscape to portrait.</string>
     <string name="force_landscape_title">Force global landscape</string>
     <string name="force_landscape_summary">Force portrait-locked apps to display in landscape. Manual 180° rotation and the system rotate icon still work.</string>
+    <string name="force_landscape_tile_on">Forced</string>
+    <string name="force_landscape_tile_off">Off</string>
     <string name="disable_zui_applist_title">Security</string>
     <string name="disable_flag_secure_title">Force allow screenshots</string>
     <string name="disable_flag_secure_summary">Remove secure window flags to fix black screenshots in secure windows.</string>
