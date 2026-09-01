@@ -1,4 +1,4 @@
-# <p align="center">ZTool - 更适合 ZUXOS 体质的 LSPosed 自定义模块</p>
+# <p align="center">ZTool - 更适合 ZUXOS 体质的 LSPosed 自定义模块--二改</p>
 
 <div align="center">
   <img src="/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" alt="ZTool Logo">
@@ -13,6 +13,12 @@
 > "Make ZUXOS Great, Not 'Again'."
 
 > [!tip]
+>此模块为自用，设备y700gen2，与原作者无关，仅尝试用AI增改横屏适配以及适配数量文本，如有问题请自行解决且不要因本二改模块问题麻烦原作者。
+>
+> 
+> ------------------下方为原作内容--------------------------
+>
+> 
 > 当前文档基于版本 `20260808` 编写。
 > 
 > 部分功能可能也适用于 ZUI ，关于 ZUI 上模块功能的可用性我们无法担保。
