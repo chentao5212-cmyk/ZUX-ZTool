@@ -117,7 +117,7 @@ fun ZToolScaffold(
     content: @Composable (PaddingValues) -> Unit
 ) {
     val useMiuix = LocalZToolThemeSpec.current.style == FrontendStyle.Miuix
-    val scrollBehavior = if (useMiuix) remember { MiuixScrollBehavior() } else null
+    val scrollBehavior = if (useMiuix) MiuixScrollBehavior() else null
     val scaffoldModifier = scrollBehavior?.let {
         modifier.nestedScroll(it.nestedScrollConnection)
     } ?: modifier
@@ -241,21 +241,25 @@ private fun SyncMiuixNavigationRailState(
     zToolState: ZToolNavigationRailState,
     miuixState: NavigationRailState
 ) {
-    // Single bidirectional sync via one snapshotFlow over the combined value.
-    // Replaces two LaunchedEffects that re-launched each other on every change.
     LaunchedEffect(zToolState, miuixState) {
-        snapshotFlow { zToolState.currentValue to miuixState.currentValue }
-            .collectLatest { (zValue, mValue) ->
-                val expectedMiuix = zValue.toMiuixValue()
-                if (mValue != expectedMiuix) {
-                    when (zValue) {
+        snapshotFlow { zToolState.currentValue }
+            .collectLatest { value ->
+                val miuixValue = value.toMiuixValue()
+                if (miuixState.currentValue != miuixValue) {
+                    when (value) {
                         ZToolNavigationRailValue.Collapsed -> miuixState.collapse()
                         ZToolNavigationRailValue.Expanded -> miuixState.expand()
                     }
                 }
-                val expectedZTool = mValue.toZToolValue()
-                if (zValue != expectedZTool) {
-                    zToolState.currentValue = expectedZTool
+            }
+    }
+
+    LaunchedEffect(zToolState, miuixState) {
+        snapshotFlow { miuixState.currentValue }
+            .collectLatest { value ->
+                val zToolValue = value.toZToolValue()
+                if (zToolState.currentValue != zToolValue) {
+                    zToolState.currentValue = zToolValue
                 }
             }
     }
